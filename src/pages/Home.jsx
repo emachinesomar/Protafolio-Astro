@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useCallback, memo } from "react"
-import { Github, Linkedin, Mail, ExternalLink, Instagram, Sparkles } from "lucide-react"
+import {
+    Mail,
+    ExternalLink,
+    Sparkles,
+    GithubIcon,
+    LinkedinIcon,
+    InstagramIcon
+} from "lucide-react"
 import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 // Memoized Components
 const StatusBadge = memo(() => (
@@ -22,7 +30,7 @@ const MainTitle = memo(() => (
         <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
             <span className="relative inline-block">
                 <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20"></span>
-                <span className="relative font-bold text-neutral-900 dark:text-neutral-200  from-indigo-600 to-purple-600 bg-clip-text text-transparent ">
+                <span className="relative font-bold text-neutral-900 dark:text-neutral-200 from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                     Frontend
                 </span>
             </span>
@@ -37,40 +45,6 @@ const MainTitle = memo(() => (
     </div>
 ));
 
-const TechStack = memo(({ tech }) => (
-    <div className="px-4 py-2 hidden sm:block rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-gray-300 hover:bg-white/10 transition-colors">
-        {tech}
-    </div>
-));
-
-const CTAButton = memo(({ href, text, icon: Icon }) => (
-    <a href={href}>
-        <button className="group relative w-[160px]">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
-            <div className="relative h-11 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
-                <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
-                <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
-                    <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
-                        {text}
-                    </span>
-                    <Icon className={`w-4 h-4 text-gray-200 ${text === 'Contact' ? 'group-hover:translate-x-1' : 'group-hover:rotate-45'} transform transition-all duration-300 z-10`} />
-                </span>
-            </div>
-        </button>
-    </a>
-));
-
-const SocialLink = memo(({ icon: Icon, link }) => (
-    <a href={link} target="_blank" rel="noopener noreferrer">
-        <button className="group relative p-3">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
-            <div className="relative rounded-xl bg-black/50 backdrop-blur-xl p-2 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-all duration-300">
-                <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-            </div>
-        </button>
-    </a>
-));
-
 // Constants
 const TYPING_SPEED = 100;
 const ERASING_SPEED = 50;
@@ -78,9 +52,9 @@ const PAUSE_DURATION = 4000;
 const WORDS = ["Network & Telecom Student", "Tech Enthusiast"];
 const TECH_STACK = ["React", "Javascript", "Node.js", "Tailwind"];
 const SOCIAL_LINKS = [
-    { icon: Github, link: "https://github.com/" },
-    { icon: Linkedin, link: "https://www.linkedin.com/in/" },
-    { icon: Instagram, link: "https://www.instagram.com/" }
+    { icon: GithubIcon, link: "https://github.com/" },
+    { icon: LinkedinIcon, link: "https://www.linkedin.com/in/" },
+    { icon: InstagramIcon, link: "https://www.instagram.com/" }
 ];
 
 const Home = () => {
@@ -97,7 +71,6 @@ const Home = () => {
             AOS.init({
                 once: true,
                 offset: 10,
-
             });
         };
 
@@ -170,7 +143,10 @@ const Home = () => {
                                 {/* Tech Stack */}
                                 <div className="flex flex-wrap gap-3 justify-start" data-aos="fade-up" data-aos-delay="1200">
                                     {TECH_STACK.map((tech, index) => (
-                                        <div key={index} className="px-4 py-2 hidden sm:block rounded-full bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 backdrop-blur-sm border border-purple-500/10 text-sm text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-[#6366f1]/20 hover:to-[#a855f7]/20 transition-colors">
+                                        <div
+                                            key={index}
+                                            className="px-4 py-2 hidden sm:block rounded-full bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 backdrop-blur-sm border border-purple-500/10 text-sm text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-[#6366f1]/20 hover:to-[#a855f7]/20 transition-colors"
+                                        >
                                             {tech}
                                         </div>
                                     ))}
@@ -198,27 +174,44 @@ const Home = () => {
                             data-aos="fade-left"
                             data-aos-delay="600">
                             <div className="relative w-full opacity-90">
-                                <div className={`absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-3xl blur-3xl transition-all duration-700 ease-in-out ${isHovering ? "opacity-50 scale-105" : "opacity-20 scale-100"
-                                    }`}>
+                                <div className={`absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-3xl blur-3xl transition-all duration-700 ease-in-out ${isHovering ? "opacity-50 scale-105" : "opacity-20 scale-100"}`}>
                                 </div>
 
-                                <div className={`relative z-10 w-full opacity-90 transform transition-transform duration-500 ${isHovering ? "scale-105" : "scale-100"
-                                    }`}>
-                                    <video
-                                        autoPlay
-                                        loop
-                                        muted
-                                        playsInline
-                                        className="w-full h-full object-cover rounded-2xl shadow-xl shadow-purple-500/20"
-                                        src="https://cdnl.iconscout.com/lottie/premium/thumb/man-coding-on-laptop-animation-download-in-lottie-json-gif-static-svg-file-formats--html-logo-freelance-developer-programmer-doing-freelancing-job-employee-design-development-animations-3618984.mp4"
-                                        type="video/mp4">
-                                    </video>
-                                </div>
-
-                                <div className={`absolute inset-0 pointer-events-none transition-all duration-700 ${isHovering ? "opacity-50" : "opacity-20"
-                                    }`}>
-                                    <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-indigo-500/10 to-purple-500/10 blur-3xl animate-[pulse_6s_cubic-bezier(0.4,0,0.6,1)_infinite] transition-all duration-700 ${isHovering ? "scale-110" : "scale-100"
+                                <div className={`relative z-10 w-full opacity-90 transform transition-transform duration-500 ${isHovering ? "scale-105" : "scale-100"}`}>
+                                    <div className={`relative z-10 w-full opacity-90 transform transition-transform duration-500 ${isHovering ? "scale-105" : "scale-100"
                                         }`}>
+                                        {/* <DotLottieReact {...lottieOptions} /> */}
+                                        {/* <video autoPlay loop muted playsInline className="w-full h-full object-cover"
+                   src="https://cdnl.iconscout.com/lottie/premium/thumb/man-doing-ai-analysis-13962339-11234100.mp4"></video> */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/back-end-developer-animation-download-in-lottie-json-gif-static-svg-file-formats--front-web-development-computing-pack-school-education-animations-3428942.mp4*/}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/mobile-app-development-animation-download-in-lottie-json-gif-static-svg-file-formats--application-marketing-design-animations-3432090.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/female-programmer-developed-website-animation-download-in-lottie-json-gif-static-svg-file-formats--html-logo-developer-web-development-pack-design-animations-5304702.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/app-development-animation-download-in-lottie-json-gif-static-svg-file-formats--web-design-mobile-application-data-computing-pack-business-animations-3479079.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/mobile-application-developer-animation-download-in-lottie-json-gif-static-svg-file-formats--html-logo-website-development-app-web-pack-design-animations-5304706.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/website-development-animation-download-in-lottie-json-gif-static-svg-file-formats--analytics-logo-web-wireframe-layout-home-page-pack-business-animations-3806560.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/backend-coding-animation-download-in-lottie-json-gif-static-svg-file-formats--web-development-programming-software-digital-marketing-pack-miscellaneous-animations-9315993.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/man-coding-on-laptop-animation-download-in-lottie-json-gif-static-svg-file-formats--html-logo-freelance-developer-programmer-doing-freelancing-job-employee-design-development-animations-3618984.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/web-development-team-working-together-animation-download-in-lottie-json-gif-static-svg-file-formats--developers-developer-business-activities-pack-miscellaneous-animations-7016596.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/two-male-developer-working-on-computer-animation-download-in-lottie-json-gif-static-svg-file-formats--application-development-web-program-people-pack-animations-3429384.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/full-stack-web-developer-animation-download-in-lottie-json-gif-static-svg-file-formats--code-dev-development-software-pack-seo-animations-9801019.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/male-developer-working-at-desk-animation-download-in-lottie-json-gif-static-svg-file-formats--code-line-lines-freelance-programmer-technology-pack-science-animations-6864484.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/web-developer-animation-download-in-lottie-json-gif-static-svg-file-formats--java-logo-development-application-software-pack-business-animations-3428952.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/freelance-developer-working-on-laptop-animation-download-in-lottie-json-gif-static-svg-file-formats--html-logo-programmer-doing-freelancing-job-design-development-animations-3618987.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/app-development-animation-download-in-lottie-json-gif-static-svg-file-formats--mobile-web-android-design-animations-4009665.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/male-web-developer-working-on-laptop-animation-download-in-lottie-json-gif-static-svg-file-formats--development-software-pack-website-animations-4198353.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/web-development-animation-download-in-lottie-json-gif-static-svg-file-formats--html-logo-website-female-developer-pack-design-animations-4936329.mp4 */}
+                                        {/* https://cdnl.iconscout.com/lottie/premium/thumb/development-team-animation-download-in-lottie-json-gif-static-svg-file-formats--html-logo-java-coding-developer-web-code-teamwork-pack-business-animations-3056516.mp4 */}
+
+
+
+                                        <video autoPlay loop muted playsInline className="w-full h-full object-cover"
+                                            src="https://cdnl.iconscout.com/lottie/premium/thumb/man-coding-on-laptop-animation-download-in-lottie-json-gif-static-svg-file-formats--html-logo-freelance-developer-programmer-doing-freelancing-job-employee-design-development-animations-3618984.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+
+                                <div className={`absolute inset-0 pointer-events-none transition-all duration-700 ${isHovering ? "opacity-50" : "opacity-20"}`}>
+                                    <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-indigo-500/10 to-purple-500/10 blur-3xl animate-[pulse_6s_cubic-bezier(0.4,0,0.6,1)_infinite] transition-all duration-700 ${isHovering ? "scale-110" : "scale-100"}`}>
                                     </div>
                                 </div>
                             </div>
@@ -229,5 +222,34 @@ const Home = () => {
         </div>
     );
 };
+
+// Eliminar las interfaces y simplificar los componentes
+const SocialLink = memo(({ icon: Icon, link }) => (
+    <a href={link} target="_blank" rel="noopener noreferrer">
+        <button className="group relative p-3">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
+            <div className="relative rounded-xl bg-black/50 backdrop-blur-xl p-2 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-all duration-300">
+                <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+            </div>
+        </button>
+    </a>
+));
+
+const CTAButton = memo(({ href, text, icon: Icon }) => (
+    <a href={href}>
+        <button className="group relative w-[160px]">
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
+            <div className="relative h-11 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
+                <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
+                <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
+                    <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
+                        {text}
+                    </span>
+                    <Icon className={`w-4 h-4 text-gray-200 ${text === 'Contact' ? 'group-hover:translate-x-1' : 'group-hover:rotate-45'} transform transition-all duration-300 z-10`} />
+                </span>
+            </div>
+        </button>
+    </a>
+));
 
 export default memo(Home);

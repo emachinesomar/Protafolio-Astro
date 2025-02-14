@@ -10,9 +10,13 @@
     "skipLibCheck": true,
     "allowJs": true,
     "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "types": ["react", "node"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
-  }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"],
+  "exclude": ["node_modules"]
 }

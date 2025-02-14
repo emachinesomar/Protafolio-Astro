@@ -45,7 +45,7 @@ const IconButton = ({ Icon }) => (
     </div>
 );
 
-const WelcomeScreen = ({ onLoadingComplete }) => {
+const WelcomeScreen = ({ onLoadingComplete = () => { } }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isAOSInitialized, setIsAOSInitialized] = useState(false);
 

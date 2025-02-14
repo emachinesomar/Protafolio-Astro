@@ -8,12 +8,12 @@ import codeReviewImage from '@/images/code-review.svg'
 import dotsTriangle from '@/images/dots-triangle.svg'
 import avatarImage from '@/images/avatar.png'
 import WelcomeScreen from './WelcomeScreen'
-import Home from './Home'
+import Home from './Home.jsx'
 import { Image } from 'astro:assets'
 ---
 
-<Layout>
-	<WelcomeScreen client:load />
+<Layout title='Home'>
+	<WelcomeScreen client:load onLoadingComplete={() => {}} />
 	<div title='Home' class='relative'>
 		<Home client:load />
 	</div>

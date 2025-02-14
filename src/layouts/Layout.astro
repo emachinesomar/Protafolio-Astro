@@ -6,11 +6,11 @@ import { ViewTransitions } from 'astro:transitions'
 import 'aos/dist/aos.css'
 
 interface Props {
-	title: string
+	title?: string
 	showNewsletter?: boolean
 }
 
-const { title, showNewsletter = true } = Astro.props
+const { title = 'Portfolio', showNewsletter = true } = Astro.props
 ---
 
 <!doctype html>
